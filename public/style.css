@@ -75,6 +75,7 @@ body {
     from {
         transform: translate(0, 0) scale(1);
     }
+
     to {
         transform: translate(30px, -30px) scale(1.1);
     }
@@ -126,6 +127,37 @@ header p {
     box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.6);
 }
 
+.conversion-selector {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+select {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--text-primary);
+    padding: 0.75rem 1.5rem;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-family: inherit;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.2s ease;
+    width: 100%;
+    max-width: 300px;
+}
+
+select:hover,
+select:focus {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--primary-color);
+}
+
+select option {
+    background: var(--card-bg);
+    color: var(--text-primary);
+}
+
 .drop-zone {
     border: 2px dashed rgba(255, 255, 255, 0.2);
     border-radius: 16px;
@@ -134,7 +166,8 @@ header p {
     transition: all 0.3s ease;
 }
 
-.drop-zone:hover, .drop-zone.dragover {
+.drop-zone:hover,
+.drop-zone.dragover {
     border-color: var(--primary-color);
     background: rgba(99, 102, 241, 0.05);
 }
@@ -192,15 +225,19 @@ header p {
 }
 
 @keyframes spin {
-    to { transform: rotate(360deg); }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 /* Result State */
-.result-state, .error-state {
+.result-state,
+.error-state {
     text-align: center;
 }
 
-.success-icon, .error-icon {
+.success-icon,
+.error-icon {
     width: 80px;
     height: 80px;
     border-radius: 50%;
@@ -246,11 +283,25 @@ footer {
 }
 
 @keyframes fadeInDown {
-    from { opacity: 0; transform: translateY(-20px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

@@ -1,7 +1,10 @@
 FROM node:20
 
-# Install Python and pip
-RUN apt-get update && apt-get install -y python3 python3-pip python3-venv
+# Install Python, pip, LibreOffice, and Poppler
+RUN apt-get update && \
+    apt-get install -y python3 python3-pip python3-venv libreoffice poppler-utils && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 # Create app directory
 WORKDIR /usr/src/app

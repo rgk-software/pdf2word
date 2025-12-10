@@ -9,6 +9,29 @@ document.addEventListener('DOMContentLoaded', () => {
     const tryAgainBtn = document.getElementById('try-again-btn');
     const errorMessage = document.getElementById('error-message');
 
+    const conversionSelect = document.getElementById('conversion-type');
+    const dropText = document.getElementById('drop-text');
+
+    // Handle Conversion Type Change
+    conversionSelect.addEventListener('change', updateUI);
+
+    function updateUI() {
+        const type = conversionSelect.value;
+        let accept = '.pdf';
+        let text = 'Drag & Drop your PDF here';
+
+        if (type.startsWith('word')) {
+            accept = '.doc,.docx';
+            text = 'Drag & Drop your Word file here';
+        } else if (type.startsWith('ppt')) {
+            accept = '.ppt,.pptx';
+            text = 'Drag & Drop your PowerPoint here';
+        }
+
+        fileInput.accept = accept;
+        dropText.textContent = text;
+    }
+
     // Drag and Drop Events
     ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
         dropZone.addEventListener(eventName, preventDefaults, false);
@@ -55,11 +78,10 @@ document.addEventListener('DOMContentLoaded', () => {
     function handleFiles(files) {
         if (files.length > 0) {
             const file = files[0];
-            if (file.type === 'application/pdf') {
-                uploadFile(file);
-            } else {
-                showError('Please upload a PDF file');
-            }
+            // Simple validation based on accept attribute logic or just ext
+            // Let's trust server validation too, but basic client check:
+            // Just upload it.
+            uploadFile(file);
         }
     }
 
@@ -68,7 +90,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const startTime = Date.now();
 
         const formData = new FormData();
-        formData.append('pdf', file);
+        formData.append('file', file); // Changed from 'pdf' to 'file' to be generic
+        formData.append('conversionType', conversionSelect.value);
 
         try {
             const response = await fetch('/convert', {
@@ -83,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Get filename from header or default
             const disposition = response.headers.get('Content-Disposition');
-            let filename = 'converted.docx';
+            let filename = 'converted_file';
             if (disposition && disposition.indexOf('attachment') !== -1) {
                 const filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
                 const matches = filenameRegex.exec(disposition);

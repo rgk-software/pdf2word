@@ -24,13 +24,24 @@
         </header>
 
         <div class="converter-card">
+            <div class="conversion-selector">
+                <select id="conversion-type">
+                    <option value="pdf-to-word">PDF to Word</option>
+                    <option value="pdf-to-ppt">PDF to PowerPoint</option>
+                    <option value="pdf-to-image">PDF to Image</option>
+                    <option value="word-to-pdf">Word to PDF</option>
+                    <option value="ppt-to-pdf">PowerPoint to PDF</option>
+                    <option value="ppt-to-image">PowerPoint to Image</option>
+                </select>
+            </div>
+
             <div id="drop-zone" class="drop-zone">
                 <div class="icon-container">
                     <i data-feather="upload-cloud"></i>
                 </div>
-                <h3>Drag & Drop your PDF here</h3>
+                <h3 id="drop-text">Drag & Drop your PDF here</h3>
                 <p>or <span class="browse-btn">browse files</span></p>
-                <input type="file" id="file-input" accept="application/pdf" hidden>
+                <input type="file" id="file-input" accept=".pdf" hidden>
             </div>
 
             <div id="processing-state" class="processing-state hidden">
