@@ -78,7 +78,7 @@ app.post('/convert', upload.single('file'), async (req, res) => {
     if (!req.file) return res.status(400).json({ error: 'No file uploaded' });
 
     const conversionType = req.body.conversionType; // e.g., 'pdf-to-word', 'word-to-pdf'
-    const inputPath = req.file.path;
+    const inputPath = path.resolve(req.file.path);
     const inputDir = path.dirname(inputPath);
     const originalName = req.file.originalname;
     const nameWithoutExt = path.parse(originalName).name;
