@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instant PDF to Word Converter</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js"></script>
+</head>
+
+<body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <main class="container">
+        <header>
+            <h1>PDF to Word <span class="gradient-text">Instant</span></h1>
+            <p>Convert your documents in seconds with high fidelity.</p>
+        </header>
+
+        <div class="converter-card">
+            <div id="drop-zone" class="drop-zone">
+                <div class="icon-container">
+                    <i data-feather="upload-cloud"></i>
+                </div>
+                <h3>Drag & Drop your PDF here</h3>
+                <p>or <span class="browse-btn">browse files</span></p>
+                <input type="file" id="file-input" accept="application/pdf" hidden>
+            </div>
+
+            <div id="processing-state" class="processing-state hidden">
+                <div class="loader">
+                    <div class="spinner"></div>
+                </div>
+                <h3>Converting...</h3>
+                <p>Hold tight, we're making magic happen.</p>
+            </div>
+
+            <div id="result-state" class="result-state hidden">
+                <div class="success-icon">
+                    <i data-feather="check-circle"></i>
+                </div>
+                <h3>Conversion Complete!</h3>
+                <p>Time taken: <span id="time-taken">0ms</span></p>
+                <button id="download-again-btn" class="secondary-btn">Convert Another</button>
+            </div>
+
+            <div id="error-state" class="error-state hidden">
+                <div class="error-icon">
+                    <i data-feather="alert-circle"></i>
+                </div>
+                <h3 id="error-message">Something went wrong</h3>
+                <button id="try-again-btn" class="secondary-btn">Try Again</button>
+            </div>
+        </div>
+
+        <footer>
+            <p>Build by Ramanand</p>
+        </footer>
+    </main>
+    <script src="script.js"></script>
+    <script>
+        feather.replace();
+    </script>
+</body>
+
+</html>
